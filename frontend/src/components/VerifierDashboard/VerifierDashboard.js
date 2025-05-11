@@ -14,7 +14,11 @@ const VerifierDashboard = () => {
   useEffect(() => {
     const fetchLoanData = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get(`https://creditsea-loan-app-2.onrender.com/api/many`);
+=======
+        const response = await axios.get(`https://creditsea-loan-app-2.onrender.com/many`);
+>>>>>>> 7bc1eef5a8ab7b2cc6101fe18e1157e260d7ee20
         const data = response.data.data || [];
         
         const formattedData = data.map(item => ({
