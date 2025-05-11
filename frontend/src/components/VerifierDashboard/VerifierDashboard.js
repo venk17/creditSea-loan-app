@@ -14,7 +14,7 @@ const VerifierDashboard = () => {
   useEffect(() => {
     const fetchLoanData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/many`);
+        const response = await axios.get(`https://creditsea-loan-app-2.onrender.com/api/many`);
         const data = response.data.data || [];
         
         const formattedData = data.map(item => ({
@@ -37,7 +37,7 @@ const VerifierDashboard = () => {
   const handleStatusChange = async (record, newStatus) => {
     try {
       await axios.patch(
-        `http://localhostapi:5000//Loans/${record.key}`,
+        `https://creditsea-loan-app-2.onrender.com/Loans/${record.key}`,
         { status: newStatus }
       );
       

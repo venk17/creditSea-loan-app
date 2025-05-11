@@ -16,8 +16,9 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/loans/many');
+        const response = await axios.get(`https://creditsea-loan-app-2.onrender.com/loans/many`);
         const data = response.data.data || [];
+        console.log(data)
         const result = data.map(item => ({
           'User Details': 'User details placeholder',
           'Customer name': item.fullName,
