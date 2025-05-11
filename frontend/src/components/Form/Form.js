@@ -30,7 +30,7 @@ const Form = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/api/loans/create', loanDetails);
+      await axios.post('https://creditsea-loan-app-2.onrender.com/api/loans/create', loanDetails);
       window.location.reload();
     } catch (error) {
       alert("Error submitting form. Please try again.");
