@@ -1,0 +1,173 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #2c3e50;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 4rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.app-name {
+  font-weight: bold;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.user-nav-icons {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.user-nav-icons button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: all 0.2s;
+}
+
+.user-nav-icons button:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.nav-icon {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: all 0.2s;
+}
+
+.nav-icon:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.user-role {
+  font-size: 0.875rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  white-space: nowrap;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0.875rem 1.5rem;
+  }
+  
+  .nav-left, .nav-right {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+    height: 3.5rem;
+  }
+  
+  .app-name {
+    font-size: 1.1rem;
+  }
+  
+  .user-role {
+    display: none;
+  }
+  
+  .user-nav-icons, .nav-right {
+    gap: 1rem;
+  }
+  
+  .user-nav-icons button, .nav-icon {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    padding: 0.625rem 0.75rem;
+  }
+  
+  .app-name {
+    font-size: 1rem;
+  }
+  
+  .user-nav-icons, .nav-right {
+    gap: 0.75rem;
+  }
+  
+  .user-nav-icons button, .nav-icon {
+    font-size: 1rem;
+  }
+  
+  .menu-toggle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-name {
+    display: none;
+  }
+  
+  .user-nav-icons {
+    gap: 0.5rem;
+  }
+  
+  .nav-right {
+    gap: 0.5rem;
+  }
+  
+  .nav-icon:nth-child(2) {  /* Hide email icon */
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .user-nav-icons button, .nav-icon {
+    font-size: 0.875rem;
+  }
+  
+  .nav-icon:nth-child(1) {  /* Hide bell icon */
+    display: none;
+  }
+}
