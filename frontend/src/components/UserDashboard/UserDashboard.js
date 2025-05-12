@@ -8,22 +8,18 @@ import { Table } from 'antd';
 import './UserDashboard.css';
 
 const UserDashboard = () => {
-  const [form, setForm] = useState(false);
+  const [formVisible, setFormVisible] = useState(false);
   const [loanData, setLoanData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-<<<<<<< HEAD
-        const response = await axios.get("https://creditsea-loan-app-2.onrender.com/api/loans/many");
-=======
-        const response = await axios.get('https://creditsea-loan-app-2.onrender.com/loans/many');
->>>>>>> 7bc1eef5a8ab7b2cc6101fe18e1157e260d7ee20
+        const response = await axios.get('https://creditsea-loan-app-2.onrender.com/api/loans/many');
         const data = response.data.data || [];
         const result = data.map(item => ({
           'Loan Officer': item.fullName,
-          'Amount': item.requiredAmount,
-          'Date Applied': item.dateApplied,
+          'Amount': `$${item.requiredAmount?.toLocaleString() || '0'}`, // Format as currency
+          'Date Applied': new Date(item.dateApplied).toLocaleDateString(), // Format date
           'Status': item.loanStatus,
           'key': uuid()
         }));
@@ -35,44 +31,67 @@ const UserDashboard = () => {
     fetchData();
   }, []);
 
-  const handleForm = () => {
-    setForm(!form);
+  const toggleForm = () => {
+    setFormVisible(!formVisible);
   };
 
   return (
     <div className="user-dashboard">
-      {!form && <Navbar isUser={true} />}
-      {form && <div className="close-form" onClick={handleForm}>×</div>}
+      {!formVisible && <Navbar isUser={true} />}
+      {formVisible && (
+        <div className="close-form" onClick={toggleForm}>
+          ×
+        </div>
+      )}
+      
       <div className="dashboard-content">
-        {form && <Form />}
-        <div className="dashboard-header">
-          <div className="header-left">
-            <div className="deficit-box">
-              <div className="deficit-icon"></div>
-              <div className="deficit-text">
-                <span>DEFICIT</span>
-                <h1>0.0</h1>
+        {formVisible && <Form />}
+        
+        {!formVisible && (
+          <>
+            <div className="dashboard-header">
+              <div className="header-left">
+                <div className="deficit-box">
+                  <div className="deficit-icon"></div>
+                  <div className="deficit-text">
+                    <span>DEFICIT</span>
+                    <h1>0.0</h1>
+                  </div>
+                </div>
+              </div>
+              <div className="header-right">
+                <button className="loan-button" onClick={toggleForm}>
+                  Get a Loan
+                </button>
               </div>
             </div>
-          </div>
-          <div className="header-right">
-            <button className="loan-button" onClick={handleForm}>Get a Loan</button>
-          </div>
-        </div>
-        <div className="dashboard-actions">
-          <div className="action-buttons">
-            <button className="action-button">Borrow Cash</button>
-            <button className="action-button">Transact</button>
-            <button className="action-button">Deposit Cash</button>
-          </div>
-          <div className="search-box">
-            <div className="search-icon">🔍</div>
-            <input type="search" placeholder="Search for loans" className="search-input" />
-          </div>
-        </div>
-        <div className="loan-table">
-          <Table columns={columns} dataSource={loanData} title={() => "Applied Loans"} />
-        </div>
+            
+            <div className="dashboard-actions">
+              <div className="action-buttons">
+                <button className="action-button">Borrow Cash</button>
+                <button className="action-button">Transact</button>
+                <button className="action-button">Deposit Cash</button>
+              </div>
+              <div className="search-box">
+                <div className="search-icon">🔍</div>
+                <input 
+                  type="search" 
+                  placeholder="Search for loans" 
+                  className="search-input" 
+                />
+              </div>
+            </div>
+            
+            <div className="loan-table">
+              <Table 
+                columns={columns} 
+                dataSource={loanData} 
+                title={() => "Applied Loans"} 
+                pagination={{ pageSize: 5 }} // Added pagination
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -14,13 +14,8 @@ const VerifierDashboard = () => {
   useEffect(() => {
     const fetchLoanData = async () => {
       try {
-<<<<<<< HEAD
-        const response = await axios.get(`https://creditsea-loan-app-2.onrender.com/api/many`);
-=======
-        const response = await axios.get(`https://creditsea-loan-app-2.onrender.com/many`);
->>>>>>> 7bc1eef5a8ab7b2cc6101fe18e1157e260d7ee20
+        const response = await axios.get(`https://creditsea-loan-app-2.onrender.com/api/loans/many`);
         const data = response.data.data || [];
-        
         const formattedData = data.map(item => ({
           'User Recent Activity': 'Recent activity placeholder',
           'Customer name': item.fullName,
@@ -39,21 +34,22 @@ const VerifierDashboard = () => {
   }, []);
 
   const handleStatusChange = async (record, newStatus) => {
-    try {
-      await axios.patch(
-        `https://creditsea-loan-app-2.onrender.com/Loans/${record.key}`,
-        { status: newStatus }
-      );
-      
-      setLoanData(prevData => 
-        prevData.map(item => 
-          item.key === record.key ? { ...item, Action: newStatus } : item
-        )
-      );
-    } catch (error) {
-      console.error('Error updating loan status:', error);
-    }
-  };
+  try {
+    await axios.patch(
+      `https://creditsea-loan-app-2.onrender.com/api/loans/${record.key}`,
+      { status: newStatus }
+    );
+    
+    setLoanData(prevData => 
+      prevData.map(item => 
+        item.key === record.key ? { ...item, Action: newStatus } : item
+      )
+    );
+  } catch (error) {
+    console.error('Error updating loan status:', error);
+  }
+};
+
 
   const menuItems = [
     { icon: '📊', label: 'Dashboard' },

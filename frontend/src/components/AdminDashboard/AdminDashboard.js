@@ -16,13 +16,8 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-<<<<<<< HEAD
-        const response = await axios.get(`https://creditsea-loan-app-2.onrender.com/loans/many`);
-=======
         const response = await axios.get('https://creditsea-loan-app-2.onrender.com/api/loans/many');
->>>>>>> 7bc1eef5a8ab7b2cc6101fe18e1157e260d7ee20
         const data = response.data.data || [];
-        console.log(data)
         const result = data.map(item => ({
           'User Details': 'User details placeholder',
           'Customer name': item.fullName,
@@ -92,14 +87,13 @@ const AdminDashboard = () => {
             </div>
           </div>
         
-
-           <div className="loans-table">
-                <CustomTable 
-                  columns={adminColumns} 
-                  data={loanData} 
-                  title="Recent Loans"
-                />
-              </div>
+          <div className="loans-table">
+            <CustomTable 
+              columns={adminColumns} 
+              data={loanData} 
+              title="Recent Loans"
+            />
+          </div>
         </div>
       </div>
     </div>
